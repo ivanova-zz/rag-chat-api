@@ -10,6 +10,7 @@ db = Chroma(
     port=int(os.getenv("CHROMA_PORT")),
     embedding_function=embeddings,
 )
+
 retriever = db.as_retriever(
     search_kwargs={"k": 3}
 )
