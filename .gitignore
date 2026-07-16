@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Chroma database
+chroma_db/
+
+# Ollama models (если запускаешь локально)
+.ollama/
+
+# Docker
+docker-compose.override.yml
+
+# Temporary files
+*.tmp
+*.swp
+
+# Uploaded files (если будут)
+uploads/
+
+# Local database
+*.sqlite3
