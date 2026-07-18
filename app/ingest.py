@@ -6,10 +6,11 @@ from langchain_community.document_loaders import (
 )
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
 
 from app.config import embeddings
 import os
+import chromadb
+from langchain_chroma import Chroma
 
 
 KNOWLEDGE_DIR = Path("knowledge")
@@ -32,7 +33,6 @@ def ingest_documents():
 
     print(f"Loaded {len(documents)} documents")
 
-    # Разбиваем документы
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100,
@@ -42,15 +42,17 @@ def ingest_documents():
 
     print(f"Created {len(chunks)} chunks")
 
-    # Создаем Vector DB
-    db = Chroma(
-        collection_name=os.getenv("COLLECTION_NAME"),
+    client = chromadb.HttpClient(
         host=os.getenv("CHROMA_HOST"),
         port=int(os.getenv("CHROMA_PORT")),
+    )
+
+    db = Chroma(
+        client=client,
+        collection_name=os.getenv("COLLECTION_NAME"),
         embedding_function=embeddings,
     )
 
-    # db.persist()
     db.add_documents(chunks)
 
     print("Documents indexed successfully.")

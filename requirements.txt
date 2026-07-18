@@ -4,7 +4,7 @@ uvicorn
 langchain
 langchain-core
 langchain-community
-langchain-chroma
+langchain-chroma>=0.2
 langchain-ollama
 
 langchain-ollama
